@@ -1,0 +1,7 @@
+.env
+llmvenv/
+data/chroma_db/
+data/raw/
+__pycache__/
+*.pyc
+.DS_Store
