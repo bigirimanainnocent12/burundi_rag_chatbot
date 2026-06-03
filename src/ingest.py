@@ -2,10 +2,10 @@
 import sys
 from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
+from langchain_community.document_loaders import PyPDFLoader  # noqa: F401
 
-from langchain_community.document_loaders import PyPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings import HuggingFaceEmbeddings
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
 from config import DATA_DIR, CHROMA_DIR, EMBEDDING_MODEL, CHUNK_SIZE, CHUNK_OVERLAP
 
@@ -18,10 +18,6 @@ def load_pdfs() -> list:
         raise FileNotFoundError(
             f"\nAucun PDF trouvé dans : {DATA_DIR}\n"
             "Télécharge des rapports sur le Burundi et place-les dans data/raw/\n"
-            "Sources :\n"
-            "  https://documents.worldbank.org (recherche Burundi)\n"
-            "  https://www.undp.org/burundi/publications\n"
-            "  https://www.imf.org (recherche Burundi Article IV)\n"
         )
 
     documents = []
